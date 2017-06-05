@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.srs.mapper.RatingMapper">
+        <resultMap id="FullRating" type="Rating">
+                <constructor>
+                        <arg column="r.key" javaType="java.lang.String"/>
+                        <arg column="r.rating" javaType="double"/>
+                </constructor>
+        </resultMap>
+        <!-- rating_info(key string, rating double)-->
+        <insert id="insertRatingInfo" parameterType="hashmap">
+                <![CDATA[
+                    INSERT INTO rating_info VALUES(#{key}, #{rating})
+                  ]]>
+        </insert>
+        
+        <select id="findByUser" parameterType="string" resultMap="FullRating">
+                <![CDATA[
+                    SELECT * FROM rating_info r WHERE r.key LIKE concat(#{userId}, ':%')
+                  ]]>
+        </select>
+
+        <select id="findByUserMovie" parameterType="hashmap" resultMap="FullRating">
+                <![CDATA[
+                    SELECT * FROM rating_info r WHERE r.key LIKE concat(#{userId}, concat(':', #{movieId}))
+                  ]]>
+        </select>
+
+        <select id="selectAll" parameterType="hashmap" resultMap="FullRating">
+            <![CDATA[
+                    SELECT * FROM rating_info r
+            ]]>
+        </select>
+</mapper>

@@ -1,0 +1,37 @@
+* {padding:0px;margin:0px;-webkit-box-sizing:content-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+li{list-style:none }
+
+table{border-collapse:collapse;border-spacing:0;}
+/*select,input {-webkit-appearance:none;-moz-appearance:none;appearance:none;}*/
+a {text-decoration: none;color:#333333;}
+
+.mh {max-height: 100%;}
+.mw {max-width: 100%;}
+
+html,body,.wrap {height: 100%;}
+.wrap {width: 640px;borbackground:#95d08e url(../images/bg.jpg);position: relative;margin:0 auto;font-family:Microsoft YaHei;}
+.album-old,.album-new {position: absolute;}
+.album-old {width: 511px;height: 433px;background: url(../images/album-old.png);top:0px;left:15px;z-index: 1;}
+.album-new {width: 515px;height: 476px;background: url(../images/album-new.png);top:320px;right:0px;z-index: 2;}
+
+.upload-btn {position: absolute;width: 142px;height: 32px;left:50%;margin-left: -71px;top:45%;margin-top: -16px;z-index: 2;}
+.upload-btn input {width: 100%;height: 100%;opacity: 0;}
+.btn-old {background:url(../images/btn-old.png);}
+.btn-new {background:url(../images/btn-new.png);}
+
+.upload-img {position: absolute;left:0px;top:0px;z-index: 1;overflow: hidden;}
+.upload-img.loading {background:url(../images/loading.gif) no-repeat center;}
+.upload-img img {-webkit-transition: all 0.5s;transition: all 0.5s;opacity: 0;}
+.album-old .upload-img {width: 456px;height: 344px;left:24px;top:20px;-webkit-transform:rotate(-3.2deg);transform:rotate(-3.2deg);}
+.album-new .upload-img {width: 456px;height: 344px;left:40px;top:45px;-webkit-transform:rotate(6.6deg);transform:rotate(6.6deg);}
+
+.wan {width: 130px;height: 447px;background:url(../images/wan.png);position: absolute;top:480px;left:40px;z-index: 3;}
+.textarea {position: absolute;width: 346px;height: 111px;background: url(../images/textarea.png);top:740px;z-index: 4;left:170px;padding-top: 20px;padding-left: 20px;padding-right: 20px;}
+.textarea textarea {font-size: 24px;color:#91715f;border:none;background: #fff;line-height: 30px;height: 60px;width: 300px;overflow: hidden;resize:none;font-family:Microsoft YaHei;}
+.submit {width: 202px;height: 52px;background: url(../images/btn-submit.png);position: absolute;top:870px;left:50%;margin-left: -101px;}
+
+.share {width: 368px;height: 108px;position: absolute;background: url(../images/btn-share.png);top:825px;right:42px;}
+
+.result .textarea {background: none;color:#91715f;font-size: 28px;padding-top: 40px;font-family:Microsoft YaHei;}
+.share-tip {position: absolute;width: 100%;height: 100%;background:rgba(0,0,0,0.6);z-index: 9;display: none;}
+.share-tip img {float: right;margin-right: 40px;margin-top: 40px;}

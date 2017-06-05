@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.srs.mapper.UserMapper">
+        <resultMap id="FullUser" type="User">
+                <result column="u.id" property="id"/>
+        </resultMap>
+        <!-- user_info(key string, id string)-->
+        <insert id="insertUserInfo" parameterType="User">
+                <![CDATA[
+                    INSERT INTO user_info VALUES(#{id}, #{id})
+                  ]]>
+        </insert>
+
+        <select id="findById" parameterType="string" resultMap="FullUser">
+                <![CDATA[
+                SELECT * FROM user_info u where u.id = #{userId}
+                 ]]>
+        </select>
+
+        <select id="selectAll" parameterType="hashmap" resultMap="FullUser">
+                <![CDATA[
+                SELECT * FROM user_info u
+                 ]]>
+        </select>
+</mapper>

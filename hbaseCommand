@@ -1,0 +1,8 @@
+//创建srs表
+create 'srs', 'test', 'train', 'result'
+
+//创建用户信息表
+create 'user', 'info'
+
+//创建电影信息表
+create 'movie', 'info'

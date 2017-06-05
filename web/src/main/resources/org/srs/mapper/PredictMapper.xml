@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.srs.mapper.PredictMapper">
+        <resultMap id="FullPredict" type="Predict">
+                <constructor>
+                        <arg column="p.key" javaType="java.lang.String"></arg>
+                        <arg column="p.predicts" javaType="java.lang.String"></arg>
+                </constructor>
+        </resultMap>
+        <!-- predict_info(key string, predicts string)-->
+        <select id="findById" parameterType="string" resultMap="FullPredict">
+                <![CDATA[
+                SELECT * FROM predict_info p where p.key = concat(#{userId}, ':predict')
+                 ]]>
+        </select>
+</mapper>

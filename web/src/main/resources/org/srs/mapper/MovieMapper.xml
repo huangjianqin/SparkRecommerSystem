@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.srs.mapper.MovieMapper">
+        <resultMap id="FullMovie" type="Movie">
+                <result column="m.id" property="id"/>
+                <result column="m.name" property="name"/>
+                <result column="m.genres" property="genres"/>
+        </resultMap>
+        <!-- movie_info(key string, id string, name string, genres string)-->
+        <insert id="insertMovieInfo" parameterType="Movie">
+                <![CDATA[
+                    INSERT INTO movie_info VALUES(#{id}, #{id}, #{name}, #{genres})
+                  ]]>
+        </insert>
+
+        <select id="findMovieByIdOrName" parameterType="string" resultMap="FullMovie">
+                <![CDATA[
+                SELECT * FROM movie_info m where m.name LIKE #{keyword} OR m.id = #{keyword}
+                 ]]>
+        </select>
+
+        <select id="selectAll" parameterType="hashmap" resultMap="FullMovie">
+                <![CDATA[
+                SELECT * FROM movie_info m
+                 ]]>
+        </select>
+
+</mapper>

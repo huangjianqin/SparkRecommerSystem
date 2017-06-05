@@ -1,0 +1,156 @@
+.btn:hover, .btn:focus{
+    outline: none;
+    color:#fff;
+}
+.btn{
+    text-transform: capitalize;
+    color:#fff;
+    padding: 14px 20px;
+}
+.btn:hover{
+    color:#fff;
+}
+.btn-sm{
+    padding: 11px 16px;
+    border-radius: 5px;
+}
+.btn-lg{
+    font-size: 15px;
+}
+.button-left > i{
+    margin-left: 7px;
+}
+.button-right > i{
+    margin-right: 7px;
+}
+ 
+/*First Row*/
+ 
+.blue,
+.light-brown,
+.light-green,
+.light-orange{
+    background: #0088cc;
+    box-shadow:0 4px 0 #006394;
+    transition:all 0.2s ease-in-out 0s;
+    position: relative;
+    top:0;
+}
+.blue:hover,
+.light-brown:hover,
+.light-green:hover,
+.light-orange:hover{
+    top:2px;
+    box-shadow:0 2px 0 #006394;
+}
+.light-brown{
+    background: #cec2ab;
+    box-shadow: 0 4px 0 #b9a888;
+}
+.light-brown:hover{
+    box-shadow: 0 2px 0 #b9a888;
+}
+.light-green{
+    background: #75d69c;
+    box-shadow:0 4px 0 #4ac97d;
+    border-radius: 25px;
+}
+.light-green:hover{
+    box-shadow:0 2px 0 #4ac97d;
+}
+.light-orange{
+    background: #f79468;
+    box-shadow: 0 4px 0 #f46e33;
+}
+.light-orange:hover{
+    box-shadow: 0 2px 0 #f46e33;
+}
+ 
+/*Second Row*/
+ 
+.green,
+.light-blue,
+.yellow,
+.purple{
+    background: #6ab165;
+    box-shadow: 0 5px 0 #4f934b;
+    position: relative;
+    top:0;
+    transition:all 0.2s ease-in-out 0s;
+}
+.green:hover,
+.light-blue:hover,
+.yellow:hover,
+.purple:hover{
+    top:3px;
+    box-shadow: 0 2px 0 #4f934b;
+}
+.light-blue{
+    background: #4cadc9;
+    box-shadow: 0 5px 0 #338faa;
+}
+.light-blue:hover{
+    box-shadow: 0 2px 0 #338faa;
+}
+.yellow{
+    background: #f7be68;
+    box-shadow: 0 5px 0 #f4a733;
+    border-radius: 25px;
+}
+.yellow:hover{
+    box-shadow: 0 2px 0 #f4a733;
+}
+.purple{
+    background: #b97ebb;
+    box-shadow: 0 5px 0 #a559a8;
+}
+.purple:hover{
+    box-shadow: 0 2px 0 #a559a8;
+}
+ 
+/*Third Row*/
+ 
+.light-red,
+.black,
+.red,
+.light-black{
+    background: #ff675b;
+    box-shadow: 0 5px 0 #ff3323;
+    position: relative;
+    top:0;
+    transition:all 0.2s ease-in-out 0s;
+}
+.light-red:hover,
+.black:hover,
+.red:hover,
+.light-black:hover{
+    box-shadow: 0 2px 0 #ff3323;
+    top:3px;
+}
+.black{
+    background: #50485b;
+    box-shadow: 0 5px 0 #342f3c;
+}
+.black:hover{
+    box-shadow: 0 2px 0 #342f3c;
+}
+.red{
+    background: #f4524d;
+    box-shadow: 0 5px 0 #f11f18;
+    border-radius: 25px;
+}
+.red:hover{
+    box-shadow: 0 2px 0 #f11f18;
+}
+.light-black{
+    background: #555;
+    box-shadow: 0 5px 0 #393939;
+}
+.light-black:hover{
+    box-shadow: 0 2px 0 #393939;
+}
+@media only screen and (max-width: 767px) {
+    .btn{
+        margin-bottom: 15px;
+    }
+}

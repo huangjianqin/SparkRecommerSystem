@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+       <!--<bean id="kafkaProducer" class="org.apache.kafka.clients.producer.KafkaProducer">-->
+              <!--<constructor-arg type="java.util.Map">-->
+                     <!--<map>-->
+                            <!--<entry key="bootstrap.servers" value="ubuntu:9092" value-type="java.lang.Object"/>-->
+                            <!--<entry key="key.serializer" value="org.apache.kafka.common.serialization.StringSerializer" value-type="java.lang.Object"/>-->
+                            <!--<entry key="value.serializer" value="org.apache.kafka.common.serialization.StringSerializer" value-type="java.lang.Object"/>-->
+                     <!--</map>-->
+              <!--</constructor-arg>-->
+       <!--</bean>-->
+
+       <!--<context:property-placeholder-->
+       <!--location="" />-->
+       <!-- 加载资源文件-->
+       <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+              <property name="locations">
+                     <list>
+                            <value>classpath:jdbc.properties</value>
+                            <value>classpath:log4j.properties</value>
+                     </list>
+              </property>
+       </bean>
+
+       <!-- 构建数据源-->
+       <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+              <property name="driverClass" value="${jdbc.driver}"/>
+              <property name="jdbcUrl" value="${jdbc.url}"/>
+              <!--<property name="driverClass" value="com.mysql.jdbc.Driver"/>-->
+              <!--<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ssm"/>-->
+               <!--调试界面使用-->
+              <!--<property name="user" value="root"/>-->
+              <!--<property name="password" value="root"/>-->
+              <property name="initialPoolSize" value="2"/>
+              <property name="minPoolSize" value="2"/>
+              <property name="maxPoolSize" value="20"/>
+       </bean>
+
+       <!-- 获取sqlSessionFactory-->
+       <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+              <property name="dataSource" ref="dataSource"/>
+              <property name="configLocation" value="classpath:mybatis-config.xml"/>
+       </bean>
+
+       <!-- 配置DAO-->
+       <bean id="sqlSessionDaoSupport" abstract="true">
+              <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+       </bean>
+
+       <bean id="userDao" class="org.srs.dao.impl.UserDaoImpl" parent="sqlSessionDaoSupport"/>
+       <bean id="movieDao" class="org.srs.dao.impl.MovieDaoImpl" parent="sqlSessionDaoSupport"/>
+       <bean id="ratingDao" class="org.srs.dao.impl.RatingDaoImpl" parent="sqlSessionDaoSupport"/>
+       <bean id="predictDao" class="org.srs.dao.impl.PredictDaoImpl" parent="sqlSessionDaoSupport"/>
+
+       <!-- 配置事务-->
+       <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+              <property name="dataSource" ref="dataSource"/>
+       </bean>
+
+       <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>

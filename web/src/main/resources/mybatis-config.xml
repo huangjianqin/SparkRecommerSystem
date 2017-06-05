@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTDConfig3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties>
+        <property name="dialect" value="mysql"/>
+    </properties>
+
+    <typeAliases>
+        <typeAlias alias="User" type="org.srs.domain.User"/>
+        <typeAlias alias="Movie" type="org.srs.domain.Movie"/>
+        <typeAlias alias="Rating" type="org.srs.domain.Rating"/>
+        <typeAlias alias="Predict" type="org.srs.domain.Predict"/>
+    </typeAliases>
+
+    <mappers>
+        <mapper resource="org/srs/mapper/MovieMapper.xml"/>
+        <mapper resource="org/srs/mapper/PredictMapper.xml"/>
+        <mapper resource="org/srs/mapper/RatingMapper.xml"/>
+        <mapper resource="org/srs/mapper/UserMapper.xml"/>
+    </mappers>
+
+</configuration>
+
