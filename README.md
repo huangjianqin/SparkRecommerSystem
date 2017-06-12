@@ -1,0 +1,3 @@
+# SparkRecommerSystem
+基于Spark的实时推荐系统,使用MovieLens作为测试数据集
+利用kafka收集实时评分数据，Spark Streaming读取kafka数据并进行电影推荐
