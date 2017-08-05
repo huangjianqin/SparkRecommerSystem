@@ -118,7 +118,7 @@ object RSContext {
     return userIds
   }
 
-  def getHBaseMoviesId(sc: SparkContext): RDD[Int]={
+  def getHBaseMovieData(sc: SparkContext): RDD[Movie] = {
     val hbaseConfig = HBaseConfiguration.create()
     hbaseConfig.set(HConstants.ZOOKEEPER_QUORUM, context.get(RSConstants.HBASE_ZOOKEEPER_QUORUM))
     hbaseConfig.set(HConstants.ZOOKEEPER_CLIENT_PORT, context.get(RSConstants.HBASE_ZOOKEEPER_PROPERTY_CLIENTPORT))
@@ -126,20 +126,35 @@ object RSContext {
     hbaseConfig.set(TableInputFormat.INPUT_TABLE, context.get(RSConstants.HJQSRS_HBASE_MOVIES_TABLE))
     hbaseConfig.set(TableInputFormat.SCAN_COLUMN_FAMILY, context.get(RSConstants.HJQSRS_HBASE_MOVIES_COLFAMILY))
 
-    log.info("get hbase movie data...")
+    log.info("get hbase movie datas...")
     //以row为单位来区分
     val hbaseData = sc.newAPIHadoopRDD(hbaseConfig, classOf[TableInputFormat], classOf[ImmutableBytesWritable], classOf[Result])
     val colFamilyBytes = Bytes.toBytes(context.get(RSConstants.HJQSRS_HBASE_MOVIES_COLFAMILY))
-    val colQualifierBytes = Bytes.toBytes(context.get(RSConstants.HJQSRS_HBASE_MOVIES_INFO_ID))
-    val movieIds = hbaseData.map{tuple =>
+    val idBytes = Bytes.toBytes(context.get(RSConstants.HJQSRS_HBASE_MOVIES_INFO_ID))
+    val nameBytes = Bytes.toBytes(context.get(RSConstants.HJQSRS_HBASE_MOVIES_INFO_NAME))
+    val genresBytes = Bytes.toBytes(context.get(RSConstants.HJQSRS_HBASE_MOVIES_INFO_GENRES))
+    val movies = hbaseData.map{tuple =>
       val result = tuple._2
-      val id = new String(result.getValue(colFamilyBytes, colQualifierBytes)).toInt
-      id
+      val id = new String(result.getValue(colFamilyBytes, idBytes)).toInt
+      val name = new String(result.getValue(colFamilyBytes, nameBytes)).toString
+      val genres = new String(result.getValue(colFamilyBytes, genresBytes)).toString
+      Movie(id, name, genres, -1)
     }
     log.info("get compeleted")
-    return movieIds
+    return movies
   }
 
+  def getHBaseMoviesId(sc: SparkContext): RDD[Int]={
+    log.info("get hbase movie ids")
+    return getHBaseMovieData(sc).map(_.id);
+  }
+
+  def getHBaseMovieGenres(sc: SparkContext): RDD[Tuple2[Int, String]]={
+    log.info("get hbase movie ids")
+    return getHBaseMovieData(sc).map{case Movie(id, name, genres, rating) =>
+      (id, genres)
+    }
+  }
 
 }
 

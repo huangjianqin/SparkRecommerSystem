@@ -83,6 +83,8 @@ object InitEnviroment {
   }
 
   def initEnviroment(): Unit ={
+    //初始化Context
+    RSContext()
     initTable()
     initData(100, 2000)
   }

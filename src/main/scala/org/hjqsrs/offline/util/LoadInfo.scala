@@ -58,9 +58,21 @@ object LoadInfo {
       val movie = line.split(",")(0).toInt
       movie <= movieNum
     }.map{line =>
-      val movieId = line.split(",")(0)
-      val movieName = line.split(",")(1)
-      val movieGenres = line.split(",")(2)
+      var movieId:String = ""
+      var movieName:String = ""
+      var movieGenres:String = ""
+
+      if(line.contains("\"")){
+        movieId = line.split(",\"")(0)
+        movieName = line.split(",\"")(1).split("\",")(0)
+        movieGenres = line.split(",\"")(1).split("\",")(1)
+      }
+      else{
+        movieId = line.split(",")(0)
+        movieName = line.split(",")(1)
+        movieGenres = line.split(",")(2)
+      }
+
 
       val put = new Put(Bytes.toBytes(movieId))
       put.addColumn(Bytes.toBytes(propertiesBC.value.get(RSConstants.HJQSRS_HBASE_MOVIES_COLFAMILY).toString), Bytes.toBytes(propertiesBC.value.get(RSConstants.HJQSRS_HBASE_MOVIES_INFO_ID).toString), Bytes.toBytes(movieId))

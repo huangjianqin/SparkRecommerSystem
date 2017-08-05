@@ -30,6 +30,12 @@ object RSConstants {
   val HJQSRS_SPARK_MODEL_ALS_NUMITERATIONS = "hjqsrs.spark.model.als.numIterations"
   val HJQSRS_SPARK_MODEL_ALS_LAMBDA = "hjqsrs.spark.model.als.lambda"
 
+  val HJQSRS_SPARK_MODEL_KMEANS = "hjqsrs.spark.model.kmeans"
+  val HJQSRS_SPARK_MODEL_KMEANS_KINDS = "hjqsrs.spark.model.kmeans.kinds"
+  val HJQSRS_SPARK_MODEL_KMEANS_ITERATION = "hjqsrs.spark.model.kmeans.iteration"
+  val HJQSRS_SPARK_MODEL_KMEANS_RUNS = "hjqsrs.spark.model.kmeans.runs"
+  val HJQSRS_SPARK_MODEL_KMEANS_MODE = "hjqsrs.spark.model.kmeans.mode"
+
   val HJQSRS_HBASE_RATINGS_TABLE = "hjqsrs.hbase.ratings.table"
   val HJQSRS_HBASE_RATINGS_COLFAMILY_TEST = "hjqsrs.hbase.ratings.colfamily.test"
   val HJQSRS_HBASE_RATINGS_COLFAMILY_TRAIN = "hjqsrs.hbase.ratings.colfamily.train"
@@ -45,7 +51,6 @@ object RSConstants {
   val HJQSRS_HBASE_MOVIES_INFO_ID = "hjqsrs.hbase.movies.info.id"
   val HJQSRS_HBASE_MOVIES_INFO_NAME = "hjqsrs.hbase.movies.info.name"
   val HJQSRS_HBASE_MOVIES_INFO_GENRES = "hjqsrs.hbase.movies.info.genres"
-
 
   val HJQSRS_TOPIC = "hjqsrs.topic"
 }
